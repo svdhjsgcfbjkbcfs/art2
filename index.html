@@ -2,25 +2,33 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <title>Art2 AR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- A-Frame -->
     <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.0/dist/aframe.min.js"></script>
 
-    <!-- MindAR -->
+    <!-- MindAR (image tracking + A-Frame integration) -->
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
 
     <style>
-      body, html {
+      html, body {
         margin: 0;
         padding: 0;
         overflow: hidden;
+        background: #000;
       }
     </style>
   </head>
 
   <body>
+    <!-- Simple debug text to confirm page loaded -->
+    <p style="color:white; position:fixed; top:10px; left:10px; z-index:9999; font-family:sans-serif;">
+      Loading AR...
+    </p>
+
     <a-scene mindar-image="imageTargetSrc: ./assets/targets.mind;"
+             embedded
              color-space="sRGB"
              renderer="colorManagement: true, physicallyCorrectLights"
              vr-mode-ui="enabled: false"
@@ -28,7 +36,7 @@
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-      <!-- When the image is detected, this model appears -->
+      <!-- This entity appears when your target image is detected -->
       <a-entity mindar-image-target="targetIndex: 0">
         <a-gltf-model src="./assets/arabic.glb"
                       position="0 0 0"
